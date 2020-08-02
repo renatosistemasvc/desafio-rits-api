@@ -20,10 +20,6 @@
 
 10 - SELECT setval('matriculas_id_seq', (SELECT MAX(id) from "matriculas"));
 
---- CREDENCIAIS BANCO EDF ---
-
-1 - 
-
 --- COMANDOS ---
 
 - Reiniciar php e nginx

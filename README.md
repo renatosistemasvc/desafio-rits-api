@@ -1,70 +1,52 @@
+## SOBRE MIM
+
+Olá! Me chamo Renato Souza de Oliveira, moro em Vitória da Conquista-BA, sou formado em Sistemas de Informação e sou desenvolvedor web full stack há vários anos. Minha Stack de trabalho hoje é Laravel (PHP), NodeJs (Javascript) para backend e VueJs, ReactJs no Frontend. Também já desenvolvi vários projetos mobile com react native. Além da minha stack atual, trabalhei vários anos com jquery e tecnologias de frontend não reativas.
+
+Sobre minha experiência profissional, trabalhei por muito anos em SoftHouse's. Dentre elas a Agência Dona Graça (agência de desenvolvimento de software) e algumas outras. Na vida profissional, na maioria das agências, eu trabalhei com algumas plataformas de ecommerce. Na última agência eu participei ativamente do desenvolvimento de uma plataforma própria de loja virtual nos moldes da Loja Integrada. Também trabalhei no desenvolvimento de Software para Gestão de Empresas (ERP) dentre diversos outros ramos.
+
 ## DESAFIO RITS
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Para o desafio da Rits, eu desenvolvi uma solução em laravel (no backend) e usei VueJs (no Frontend). O desafio era desenvolver uma ferramenta de pedidos para uma lanchonete. Pensando na problemática, visualizei que o sistema deveria obrigatoriamente intuitivo de e compatível com dispositivos mobile. Uma vez que a maioria das pessoas utilizam seus smartphones para realizar pedidos. 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Com isso foram desenvolvidos dois layouts. Um primeiro bem intuitivo para o cliente realizar os pedidos. Esse layout é totalmente responsivo. Já o segundo layout é para o administrador do sistema gerir os pedidos, produtos etc. Este segundo layout basicamente é um painel administrativo padrão.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+A minha solução está disponível para teste em (realizei a hospedagem para facilitar a visualização da solução):
 
-## Learning Laravel
+[rits.renatodev.com.br](http://rits.renatodev.com.br).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## SOLUÇÃO
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1 - O cliente não precisará estar logado para iniciar um pedido. Obrigar o cliente a realizar o login acaba perdendo conversão de vendas. Ele monta o pedido e quando for fechar que o sistema apresentará a tela de login/cadastro;
+2 - O cliente poderá logar ou se cadastrar sem sair da tela de pedido. Isso também deixa o fluxo mais simples aumentando a conversão de vendas;
+3 - Após logado, o usuário poderá visualizar os seus pedidos clicando no menu Meus Pedido;
+4 - Na api foi utilizado o padrão Service Layer. As validações foram realizadas no controller e as rotas agrupadas de acordo a modularização proposto no desafio;
+5 - Foi utilizado o passport do próprio laravel para o sistema de autenticação da api;
+6 - Foi utilizado queue para colocar as ações de disparo de e-mails na fila;
+7 - Todos os requisitos e validações propostos no desafio foram implementados.
+8 - Tenho total domínio para implementar os diferenciais impostos no desafio, porém, visando entregar logo a solução com medo de outro candidato conquistar a vaga em minha frente, decidi não implementá-las. Trabalho com websocket e também já fiz integração com telegram. Não teria dificuldade em implementar os diferenciais;
 
-## Laravel Sponsors
+## INSTALAÇÃO E EXECUÇÃO DO PROJETO
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+O projeto foi desenvolvido utilizando a última versão estável do laravel 7.*. A instalação da api é a mesma para qualquer projeto em laravel:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
+1 - rodar: composer install (instalar as dependências do laravel)
+2 - php artisan migrate (criar as tabelas do banco)
+3 - php artisan passport:install --force (criar as chaves de autenticação)
+4 - criar um arquivo .env a partir do arquivo .env.example (alterando apenas credenciais do banco)
+5 - rodar a fila: php artisan queue:work --timeout=0
+6 - A variável de e-mail do arquivo .env solicitado no desafio se chama: MAIL_NEW_SALE=
 
-## Contributing
+Para instalar e rodar o front
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1 - rodar: npm install
+2 - inserir a url de acesso a api no arquivo .env.development
+3 - rodar npm run serve
 
-## Code of Conduct
+## CONSIDERAÇÕES
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Acredito que posso contribuir muito com vocês. Sou dedicado e extremamente determinado. Qualquer dúvida ou observações, meu zap é: (77) 988045503 - E-mail: renatosistemas.vc@gmail.com
 
-## Security Vulnerabilities
+## REPOSITÓRIOS
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+[Repositório API](https://github.com/renatosistemasvc/desafio-rits-api).
+[Repositório Web](https://github.com/renatosistemasvc/desafio-rits-web).
