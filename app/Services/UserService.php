@@ -58,7 +58,7 @@ class UserService
 
 		$user = User::where("email", $dados['email'])->first();
 
-		if($user['type'] != 2)
+		if(empty($user) || $user['type'] != 2)
 			return ['erro' => 'Usuário não localizado.'];
 		
 		if(!Hash::check($dados['password'], $user->password)) {
