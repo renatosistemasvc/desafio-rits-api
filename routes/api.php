@@ -1,22 +1,8 @@
 <?php
 
-// // use Mail;
-// use Helper;
-
-// Route::get('teste', function(){
-
-// 	dd(Helper::getStatusPedido(1));
-
-// 	// Mail::send('emails.email-update-status', ['status' => 'pendente'], function ($m) {
-
-// 	// 	$m->from('contato@rits.com', 'contato rits');
-// 	// 	$m->to('renatosistemas.vc@gmail.com', 'Renato Souza')->subject('Alteração de Status');
-// 	// });
-
-//     dd('teste');
-// });
-
 Route::post('user/login-client',['uses' => 'Api\UserController@loginClient']);
+Route::get('product/getAll', ['uses' => 'Api\ProductController@getAll']);
+Route::post('client/store',['uses' => 'Api\ClientController@store']);
 
 /** ROUTES USERS **/
 Route::group(['prefix' => 'user', 'middleware' => ['auth:api']], function(){
@@ -25,22 +11,20 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth:api']], function(){
 	Route::post('/store',['uses' => 'Api\UserController@store']);	
 });
 
-/** ROUTES CLIENTS 'auth:api' **/
-Route::group(['prefix' => 'client', 'middleware' => []], function(){
+/** ROUTES CLIENTS **/
+Route::group(['prefix' => 'client', 'middleware' => ['auth:api']], function(){
 
 	Route::post('/getAllPaginate/{filtro?}', ['uses' => 'Api\ClientController@getAllPaginate']);
 	Route::post('/getAll', ['uses' => 'Api\ClientController@getAll']);
 	Route::get('/getById/{id}', ['uses' => 'Api\ClientController@getById']);
-	Route::post('/store',['uses' => 'Api\ClientController@store']);
 	Route::post('/update/{id}',['uses' => 'Api\ClientController@update']);
 	Route::delete('/delete/{id}', ['uses' => 'Api\ClientController@delete']);
 });
 
 /** ROUTES PRODUCTS **/
-Route::group(['prefix' => 'product', 'middleware' => []], function(){
+Route::group(['prefix' => 'product', 'middleware' => ['auth:api']], function(){
 
 	Route::post('/getAllPaginate/{filtro?}', ['uses' => 'Api\ProductController@getAllPaginate']);
-	Route::get('/getAll', ['uses' => 'Api\ProductController@getAll']);
 	Route::get('/getById/{id}', ['uses' => 'Api\ProductController@getById']);
 	Route::post('/store',['uses' => 'Api\ProductController@store']);
 	Route::post('/update/{id}',['uses' => 'Api\ProductController@update']);
@@ -48,7 +32,7 @@ Route::group(['prefix' => 'product', 'middleware' => []], function(){
 });
 
 /** ROUTES SALES **/
-Route::group(['prefix' => 'sale', 'middleware' => []], function(){
+Route::group(['prefix' => 'sale', 'middleware' => ['auth:api']], function(){
 
 	Route::post('/getAllPaginate/{qtd?}', ['uses' => 'Api\SaleController@getAllPaginate']);
 	Route::get('/cancelSale/{id}', ['uses' => 'Api\SaleController@cancelSale']);
