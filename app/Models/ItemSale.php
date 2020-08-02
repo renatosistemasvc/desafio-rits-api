@@ -20,5 +20,10 @@ class ItemSale extends Model
         return $this->belongsTo('App\Models\Sale');
     }
 
+    public function product()
+    {
+        return $this->belongsTo('App\Models\Product');
+    }
+
 
 }

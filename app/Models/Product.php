@@ -14,5 +14,10 @@ class Product extends Model
         'price'
     ];
 
+    public function itensSales()
+    {
+        return $this->hasMany('App\Models\ItemSale');
+    }
+
 
 }

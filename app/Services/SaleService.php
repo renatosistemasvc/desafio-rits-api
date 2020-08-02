@@ -16,7 +16,7 @@ class SaleService
 {
 	public function getAllPaginate($filtro, $qtd = 10){
 
-		$query = Sale::with(['client'])->orderBy('id','desc');
+		$query = Sale::with(['client', 'itensSale.product'])->orderBy('id','desc');
 
 		if(isset($filtro['client_name']) && !empty($filtro['client_name'])){
 
