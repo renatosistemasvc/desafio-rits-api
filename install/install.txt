@@ -1,0 +1,36 @@
+--- PASSOS INTALAÇÃO DO BACKEND ---
+
+1 - RODAR O COMANDO: composer install; (INSTALAR O CORE DO LARAVEL);
+
+2 - RODAR O COMANDO: php artisan migrate; (CRIA AS TABELAS DO BANCO DE DADOS);
+
+3 - RODAR O COMANDO: php artisan passport:install --force; (CRIA AS CHAVES DE AUTENTICAÇÃO DA API);
+
+4 - IMPORTAR OS REGISTROS QUE ESTÃO NO ARQUIVO /instalacao/estados.sql NA TABELA estados DO BANCO DE DADOS;
+
+5 - IMPORTAR OS REGISTROS QUE ESTÃO NO ARQUIVO /instalacao/cidades.sql NA TABELA cidades DO BANCO DE DADOS;
+
+6 - INSTALAR BIBLIOTECA PARA CÁLCULOS ARBITRÁRIOS sudo apt-get install php7.2-bcmath
+
+7 - RODAR O SEED php artisan migrate:refresh --seed
+
+8 - ROLLBACK MIGRATIONS php artisan migrate:rollback
+
+9 - composer dump-autoload
+
+10 - SELECT setval('matriculas_id_seq', (SELECT MAX(id) from "matriculas"));
+
+--- CREDENCIAIS BANCO EDF ---
+
+1 - 
+
+--- COMANDOS ---
+
+- Reiniciar php e nginx
+    sudo service php7.3-fpm restart | sudo  service nginx restart
+    sudo service php7.2-fpm restart | sudo  service nginx restart
+
+- Reiniciar postgresql
+    sudo systemctl restart postgresql.service
+
+return var_dump(json_decode(json_encode($res), true));
