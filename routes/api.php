@@ -1,6 +1,6 @@
 <?php
 
-Route::get('webhook',['uses' => 'Api\WebhookController@store']);
+Route::post('webhook',['uses' => 'Api\WebhookController@store']);
 
 Route::post('user/login-client',['uses' => 'Api\UserController@loginClient']);
 Route::get('product/getAll', ['uses' => 'Api\ProductController@getAll']);
