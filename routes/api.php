@@ -1,5 +1,7 @@
 <?php
 
+Route::get('webhook',['uses' => 'Api\WebhookController@store']);
+
 Route::post('user/login-client',['uses' => 'Api\UserController@loginClient']);
 Route::get('product/getAll', ['uses' => 'Api\ProductController@getAll']);
 Route::post('client/store',['uses' => 'Api\ClientController@store']);
@@ -8,7 +10,7 @@ Route::post('client/store',['uses' => 'Api\ClientController@store']);
 Route::group(['prefix' => 'user', 'middleware' => ['auth:api']], function(){
 
     Route::get('/get-user-logged',['uses' => 'Api\UserController@getUserLogged']);
-	Route::post('/store',['uses' => 'Api\UserController@store']);	
+	Route::post('/store',['uses' => 'Api\UserController@store']);
 });
 
 /** ROUTES CLIENTS **/
@@ -38,6 +40,6 @@ Route::group(['prefix' => 'sale', 'middleware' => ['auth:api']], function(){
 	Route::get('/cancelSale/{id}', ['uses' => 'Api\SaleController@cancelSale']);
 	Route::get('/getById/{id}', ['uses' => 'Api\SaleController@getById']);
 	Route::post('/store',['uses' => 'Api\SaleController@store']);
-	Route::post('/updateStatus',['uses' => 'Api\SaleController@updateStatus']);	
+	Route::post('/updateStatus',['uses' => 'Api\SaleController@updateStatus']);
 	Route::delete('/delete/{id}', ['uses' => 'Api\SaleController@delete']);
 });

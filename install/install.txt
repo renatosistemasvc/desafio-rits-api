@@ -23,6 +23,7 @@
 --- COMANDOS ---
 
 - Reiniciar php e nginx
+    sudo service php7.4-fpm restart | sudo  service nginx restart
     sudo service php7.3-fpm restart | sudo  service nginx restart
     sudo service php7.2-fpm restart | sudo  service nginx restart
 
